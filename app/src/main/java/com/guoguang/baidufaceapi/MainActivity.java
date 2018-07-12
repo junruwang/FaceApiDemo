@@ -7,17 +7,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import com.baidu.aip.face.AipFace;
-import com.baidu.aip.util.Base64Util;
+
+import com.guoguang.face.FaceApiClient;
+import com.guoguang.face.FaceConfig;
+import com.guoguang.face.FaceService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -61,50 +60,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public class MyThread extends Thread{
         @Override
         public void run() {
-            String res=FaceApiClient.detectFace(filePath,fileName,maxFaceNum);
-            Message msg=new Message();
+
+            try {
+                //res = FaceApiClient.detectFace(filePath,fileName,maxFaceNum);
+                byte[] img1= FaceService.readFileToBytes(filePath,fileName);
+                //fileName="dlrb1.jpeg";
+                //byte[] img2=FaceApiClient.readFileToBytes(filePath,fileName);
+                //res = FaceApiClient.addUserFace(img,"dlrb2","user1","group1");
+                //res = FaceApiClient.updateUserFace(img,"user1","group1");
+                //res = FaceApiClient.deleteUserFace("user1","group1","ce27f3aff0f959730b92ccc4eb8adb77");
+                //res = FaceApiClient.getUserInfo("user1","group1");
+                //res = FaceApiClient.getUserFaceList("user1","group1");
+                //res = FaceApiClient.getGroupUsers("group1");
+                //res = FaceApiClient.copyUser("user1","group1","group2");
+                //res = FaceApiClient.deleteUser("user1","group2");
+                //res = FaceApiClient.deleteGroup("group3");
+                //res = FaceApiClient.getGroupList();
+                //res = FaceApiClient.personVerify(img,"320402199011294000","wangjr");
+                //res = FaceApiClient.matchFace(img1,img2);
+                //res = FaceApiClient.faceVerify(img1);
+                JSONObject res = FaceApiClient.searchFace(img1,null,"group1,group2");
+                Log.d(TAG,"val==="+res.toString(2));
+                Log.d(TAG,"val2==="+ res.getJSONObject("result").get("face_token"));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+          /*  Message msg=new Message();
             msg.obj=res;
             mHandler.sendMessage(msg);
-            Log.d(TAG,"res=="+res);
+            Log.d(TAG,"res=="+res);*/
         }
     }
-
-
-    public void connectClient(AipFace client) {
-
-        // 可选：设置网络连接参数
-        client.setConnectionTimeoutInMillis(2000);
-        client.setSocketTimeoutInMillis(60000);
-
-        // 可选：设置代理服务器地址, http和socket二选一，或者均不设置
-       // client.setHttpProxy("proxy_host", proxy_port);  // 设置http代理
-        //client.setSocketProxy("proxy_host", 127.0.0.1);  // 设置socket代理
-
-        // 可选：设置log4j日志输出格式，若不设置，则使用默认配置
-        // 也可以直接通过jvm启动参数设置此环境变量
-        System.setProperty("aip.log4j.conf", "path/to/your/log4j.properties");
-
-        // 调用接口
-        HashMap<String, String> options = new HashMap<String, String>();
-        options.put("face_field", "age,beauty,expression,faceshape,gender,glasses,race,qualities");
-        options.put("max_face_num", "2");
-        options.put("face_type", "LIVE");
-
-        String filePath = "/mnt/sdcard/face";
-        String imgStr = null;
-        try {
-            imgStr = Base64Util.encode(FileUtil.readFileByBytes(filePath,fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String imageType = "BASE64";
-        JSONObject res = client.detect(imgStr, imageType, options);
-        try {
-            System.out.println(res.toString(2));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
 
 }

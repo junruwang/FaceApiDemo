@@ -1,10 +1,9 @@
-package com.guoguang.baidufaceapi;
+package com.guoguang.util;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
