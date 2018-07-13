@@ -30,4 +30,5 @@ dependencies {
     compile files('libs/aip-java-sdk-4.3.2.jar')
     compile files('libs/json-20160810.jar')
     compile files('libs/log4j-1.2.17.jar')
+    compile files('libs/fastjson-1.2.7.jar')
 }
