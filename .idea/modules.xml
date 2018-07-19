@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BaiDuFaceApi.iml" filepath="$PROJECT_DIR$/BaiDuFaceApi.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camera2module/camera2module.iml" filepath="$PROJECT_DIR$/camera2module/camera2module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cameratest/cameratest.iml" filepath="$PROJECT_DIR$/cameratest/cameratest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/faceapimodule/faceapimodule.iml" filepath="$PROJECT_DIR$/faceapimodule/faceapimodule.iml" />
     </modules>
   </component>
 </project>

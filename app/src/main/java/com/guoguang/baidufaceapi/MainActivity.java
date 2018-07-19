@@ -10,12 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import com.guoguang.face.FaceApiClient;
-import com.guoguang.face.FaceConfig;
 import com.guoguang.face.FaceService;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

@@ -1,15 +1,17 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
+
     defaultConfig {
-        applicationId "com.guoguang.baidufaceapi"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -25,8 +27,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile project(':camera2module')
-    compile project(':faceapimodule')
+    compile files('libs/json-20160810.jar')
+    compile files('libs/aip-java-sdk-4.3.2.jar')
+    compile files('libs/fastjson-1.2.7.jar')
+    compile files('libs/log4j-1.2.17.jar')
 }
